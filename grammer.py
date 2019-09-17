@@ -35,12 +35,76 @@ a1 = set('abracadabra')
 print(a1)
 
 dict1 = dict([('Runoob', 1), ('Google', 2), ('Taobao', 3)])
-dict2 = {x: x**2 for x in (2, 4, 6)}
+dict2 = {x: x ** 2 for x in (2, 4, 6)}
 dict3 = dict(Runoob=1, Google=2, Taobao=3)
 
 print(dict1)
 print(dict2)
 print(dict3)
+
+a_string = 'Hello'
+
+print('截取后的string:', a_string[1:4])
+print("我叫%s，今年%d岁!" % ('小明', 10))
+
+for i in range(5, 9):
+    print(i)
+
+# 在字典中遍历时，关键字和对应的值可以使用 items() 方法同时解读出来
+knights = {'gallahad': 'the pure', 'robin': 'the brave'}
+for key, value in knights.items():
+    print(key, value)
+
+# 在序列中遍历时，索引位置和对应值可以使用 enumerate() 函数同时得到：
+for i, v in enumerate(['tic', 'tac', 'toe']):
+    print(i, v)
+
+# 同时遍历两个或更多的序列，可以使用 zip() 组合：
+questions = ['name', 'quest', 'favorite color']
+answers = ['lancelot', 'the holy grail', 'blue']
+for q, a in zip(questions, answers):
+    print('What is your {0}?  It is {1}.'.format(q, a))
+
+#  元组 不需要括号也可以
+tup3 = "a", "b", "c", "d"
+tup4 = tup3, (1, 2, 3, 4, 5)
+print(tup3)
+print('{0}'.format(tup4))
+
+# 迭代器
+list_iter = [1, 2, 3, 4]
+it = iter(list_iter)  # 创建迭代器对象
+print(next(it))  # 输出迭代器的下一个元素
+print(next(it))
+for x in it:
+    print(x, end=" ")
+
+print('\n分隔符')
+
+
+# __iter__() 方法返回一个特殊的迭代器对象
+# __next__() 方法会返回下一个迭代器对象
+
+class MyNumbers:
+    def __iter__(self):
+        self.a = 6
+        return self
+
+    def __next__(self):
+        if self.a <= 10:
+            x = self.a
+            self.a += 1
+            return x
+        else:
+            raise StopIteration
+
+
+instanceClass = MyNumbers()
+instanceIter = iter(instanceClass)
+
+# print(next(instanceIter))
+for x in instanceIter:
+    print(x)
 
 if __name__ == '__main__':
     input("\n\n按下 enter 键后退出。")
