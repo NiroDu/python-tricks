@@ -6,6 +6,7 @@ import re
 import json
 from multiprocessing import Pool
 
+
 def get_one_page(url):
     headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) '
                              'Chrome/77.0.3865.90 Safari/537.36'}
@@ -61,6 +62,6 @@ if __name__ == '__main__':
     # 多进程模式，但是这样写入的index不是顺序的
     # https://docs.python.org/zh-cn/3/library/multiprocessing.html
     pool = Pool()
-    pool.map(main, [i*10 for i in range(10)])
+    pool.map(main, [i * 10 for i in range(10)])
     pool.close()
     pool.join()
