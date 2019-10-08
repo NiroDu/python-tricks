@@ -71,15 +71,14 @@ def parse_page_index(html):
         data = json.loads(html)
         # 判断存在data对象的键值中存在'data'
         if data and 'data' in data.keys():
-            for item in data['data']:
-                if 'article_url' in item.keys():
-                    # 若获取不到article_url的值，会返回None，所以只取有article_url的值
-                    # 使用yield，返回一个可迭代的生成器
-                    yield item.get('article_url')
-                if data['data'] is None:
-                    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-                    print(data['data'])
-                    print(type(data['data']))
+            if data['data'] is None:
+                print('数据为空' + '!' * 100)
+            if data['data']:
+                for item in data['data']:
+                    if 'article_url' in item.keys():
+                        # 若获取不到article_url的值，会返回None，所以只取有article_url的值
+                        # 使用yield，返回一个可迭代的生成器
+                        yield item.get('article_url')
     except JSONDecodeError:
         pass
 
@@ -192,13 +191,13 @@ def main(offset):
 
 if __name__ == '__main__':
     # # 单进程下载
-    for i in range(1, 20):
-        main(i*20)
+    # for i in range(1, 20):
+    #     main(i*20)
 
     # 多进程下载
     # 开启限制 https://www.codetd.com/en/article/6433023
-    # pool = Pool()
-    # groups = ([x * 20 for x in range(GROUP_START, GROUP_END + 1)])
-    # pool.map(main, groups)
-    # pool.close()
-    # pool.join()
+    pool = Pool()
+    groups = ([x * 20 for x in range(GROUP_START, GROUP_END + 1)])
+    pool.map(main, groups)
+    pool.close()
+    pool.join()
