@@ -1,5 +1,10 @@
 # 继承
 # 类定义
+
+
+# BaseClassName（示例中的基类名）必须与派生类定义在一个作用域内。除了类，还可以用表达式，基类定义在另一个模块中时这一点非常有用:
+# class DerivedClassName(otherModname.BaseClassName):
+
 class People:
     # 定义基本属性
     name = ''

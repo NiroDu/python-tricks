@@ -33,9 +33,6 @@ p = People('Oops', 10, 30)
 p.speak()
 
 
-# BaseClassName（示例中的基类名）必须与派生类定义在一个作用域内。除了类，还可以用表达式，基类定义在另一个模块中时这一点非常有用:
-# class DerivedClassName(otherModname.BaseClassName):
-
 # 类的私有方法
 # __private_method：两个下划线开头，声明该方法为私有方法，只能在类的内部调用 ，不能在类的外部调用。
 class JustCounter:
