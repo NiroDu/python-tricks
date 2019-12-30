@@ -3,8 +3,8 @@
 
 # 这面这个例子展示了尝试打开一个文件，然后把内容打印到屏幕上:
 
-for line in open("myfile.txt"):
-    print(line, end="")
+# for line in open("myfile.txt"):
+#     print(line, end="")
 # 以上这段代码的问题是，当执行完毕后，文件会保持打开状态，并没有被关闭。
 
 # 关键词 with 语句就可以保证诸如文件之类的对象在使用完之后一定会正确的执行他的清理方法:

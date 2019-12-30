@@ -25,8 +25,10 @@ def parse_one_page(html):
     items = re.findall(pattern, html)
     # print(items)
     for item in items:
-        # 对获取到的图片进行下处理
+        # 对获取到的图片进行下处理：掉@后的内容
+        # 'https://p0.meituan.net/movie/76fc92cfa6c8f2959431b8aa604ef7ae126414.jpg@160w_220h_1e_1c'
         new_image = re.sub('(@.*)', '', item[1])
+        # 返回生成器
         yield {
             'index': item[0],
             'image': new_image,
@@ -41,6 +43,7 @@ def write_to_file(content):
     with open('result.txt', 'a', encoding='utf-8') as file:
         # TypeError: the JSON object must be str, not 'dict'
         # https://docs.python.org/zh-cn/3/library/json.html
+        # 不允许ensure_ascii编码，使用utf-8
         file.write(json.dumps(content, ensure_ascii=False) + '\n')
         file.close()
 
@@ -48,9 +51,10 @@ def write_to_file(content):
 def main(offset):
     url = 'http://maoyan.com/board/4?offset=' + str(offset)
     html = get_one_page(url)
-    print(html)
+    # print(html)
+    # 接收生成器的对象
     for item in parse_one_page(html):
-        print(item)
+        # print(item)
         write_to_file(item)
 
 
